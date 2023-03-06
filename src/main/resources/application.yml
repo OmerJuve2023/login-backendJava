@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/login-backendJava
+    username: postgres
+    password: peru2020
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      mode: always
+server:
+  port: 3013
+
+jwt:
+  jwtCookieName: access_token
+  jwtSecret: 7638792F423F4528482B4D6251655368566D597133743677397A24432646294A
+  jwtExpirationMs: 86400000
