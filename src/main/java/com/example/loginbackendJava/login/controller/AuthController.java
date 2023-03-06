@@ -54,6 +54,7 @@ public class AuthController {
     @PostMapping("logout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+        System.out.println("se trato de cerrar sesion");
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
     }
 }

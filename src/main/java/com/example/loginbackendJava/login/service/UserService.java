@@ -30,7 +30,6 @@ public class UserService {
         );
     }
 
-    // TODO better rewrite all with mapper
     public UserResponse createUser(UserRequest userRequest) {
 
         Set<Role> authorities = new HashSet<>();

@@ -47,7 +47,6 @@ public class SecurityConfig {
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPointWithError);
-        // add hasRole(Role.USER_ADMIN) to requestMatchers if want to setup role access here
         http.authorizeRequests()
                 .requestMatchers("/api/auth/**")
                 .permitAll()

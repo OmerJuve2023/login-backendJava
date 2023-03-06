@@ -24,13 +24,9 @@ public class UserRequest {
 
         if (authority == null) {
             this.authority = new HashSet<>();
-        }
-        else {
+        } else {
             this.authority = authority;
         }
     }
 
-    public UserRequest(String username, String email, String password) {
-        this(username, email, password, new HashSet<>());
-    }
 }
