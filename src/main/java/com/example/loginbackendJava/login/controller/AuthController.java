@@ -1,6 +1,5 @@
 package com.example.loginbackendJava.login.controller;
 
-
 import com.example.loginbackendJava.login.dto.LoginRequest;
 import com.example.loginbackendJava.login.dto.UserRequest;
 import com.example.loginbackendJava.login.dto.UserResponse;
@@ -31,7 +30,6 @@ public class AuthController {
 
     @PostMapping("login")
     public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
-
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 

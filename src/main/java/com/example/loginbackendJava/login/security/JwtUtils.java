@@ -17,6 +17,7 @@ import java.util.Date;
 @Component
 @Slf4j
 public class JwtUtils {
+    @Value("${jwt.jwtCookieName}")
     private static final String jwtCookie = "access_token";
 
     @Value("${jwt.jwtSecret}")

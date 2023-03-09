@@ -2,9 +2,11 @@ package com.example.loginbackendJava.table.services;
 
 import com.example.loginbackendJava.table.models.Tiempo;
 import com.example.loginbackendJava.table.repositories.TiempoRepository;
-import com.opencsv.CSVWriter;
-import jakarta.servlet.http.HttpServletResponse;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -19,21 +21,19 @@ public class TiempoService {
         repository.save(tiempo);
     }
 
-    public void writeCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=\"tiempos.csv\"");
+    public byte[] writeCSV() throws IOException {
 
-        CSVWriter csvWriter = new CSVWriter(response.getWriter());
         List<Tiempo> tiempos = repository.findAll();
-        String[] encabezados = {"Codigo", "Clave", "T1", "T2", "T3", "T4", "T5", "T6", "T7", "Fecha"};
-        csvWriter.writeNext(encabezados);
-        for (Tiempo tiempo : tiempos) {
-            String[] linea = new String[]{tiempo.getCodigo().toString(),
-                    tiempo.getClave(), String.valueOf(tiempo.getT1()), String.valueOf(tiempo.getT2()), String.valueOf(tiempo.getT3()),
-                    String.valueOf(tiempo.getT4()), String.valueOf(tiempo.getT5()), String.valueOf(tiempo.getT6()), String.valueOf(tiempo.getT7())};
-            csvWriter.writeNext(linea);
+        CsvMapper csvMapper = new CsvMapper();
+        CsvSchema csvSchema = csvMapper.schemaFor(Tiempo.class).withHeader();
+        byte[] csvBytes;
+        try {
+            csvBytes = csvMapper.writer(csvSchema).writeValueAsBytes(tiempos);
+        } catch (Exception e) {
+            // Manejar excepciones
+            csvBytes = new byte[0];
         }
-        csvWriter.close();
+        return csvBytes;
     }
 
     public List<Tiempo> getListTiempo() {
