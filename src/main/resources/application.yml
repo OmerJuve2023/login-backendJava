@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/login-backendJava
-    username: postgres
-    password: peru2020
+    url: jdbc:postgresql://ec2-3-234-204-26.compute-1.amazonaws.com/derhebtvinbc1i
+    username: ucidxcwzxstlkk
+    password: fbd876f18835eb295907ae54dba73cc0d1f0b41a95c6628dd22cdf16a7b09940
 
   jpa:
     properties:
@@ -14,6 +14,25 @@ spring:
   sql:
     init:
       mode: always
+
+  #extras
+  main:
+    lazy-initialization: false
+  quartz:
+    scheduler-name: Omar Enrique Rafael Toribio
+  graphql:
+    cors:
+      allowed-headers: *
+      allowed-methods: *
+  mvc:
+    formcontent:
+      filter:
+        enabled: true
+  config:
+    activate:
+      on-cloud-platform: heroku
+
+
 server:
   port: 3013
 
