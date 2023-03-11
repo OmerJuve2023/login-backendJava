@@ -32,9 +32,9 @@ spring:
     activate:
       on-cloud-platform: heroku
 
-
-server:
-  port: 3013
+#
+#server:
+#  port: 3013
 
 jwt:
   jwtCookieName: access_token
