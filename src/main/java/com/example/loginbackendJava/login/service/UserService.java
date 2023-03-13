@@ -31,19 +31,10 @@ public class UserService {
     }
 
     public UserResponse createUser(UserRequest userRequest) {
-
-        Set<Role> authorities = new HashSet<>();
-
-        for (String roleString : userRequest.getAuthority()) {
-            Optional<Role> findRole = roleRepository.findByAuthority(roleString);
-            findRole.ifPresent(authorities::add);
-        }
-
         User newUser = User.builder()
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .password(encoder.encode(userRequest.getPassword()))
-                .authorities(authorities)
                 .build();
 
         return UserResponse.toUserResponseFromUser(userRepository.save(newUser));
