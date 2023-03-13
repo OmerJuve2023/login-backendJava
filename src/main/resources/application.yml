@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://ec2-3-234-204-26.compute-1.amazonaws.com/derhebtvinbc1i
+    url: jdbc:postgresql://ec2-3-234-204-26.compute-1.amazonaws.com/derhebtvinbc1i?reconnect=true& characterEncoding = UTF-8
     username: ucidxcwzxstlkk
     password: fbd876f18835eb295907ae54dba73cc0d1f0b41a95c6628dd22cdf16a7b09940
 
