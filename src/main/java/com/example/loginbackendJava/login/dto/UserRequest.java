@@ -1,8 +1,7 @@
 package com.example.loginbackendJava.login.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.loginbackendJava.login.entity.Role;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,22 +14,27 @@ public class UserRequest {
     private String email;
     private String password;
 
-    private Set<String> authority;
-
-    public UserRequest(String username, String email, String password, Set<String> authority) {
+    public UserRequest(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+    /*private Set<Role> authority;*/
 
+    /*public UserRequest(String username, String email, String password, Set<Role> authority) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+*//*
         if (authority == null) {
             this.authority = new HashSet<>();
         }
         else {
             this.authority = authority;
-        }
-    }
+        }*//*
+    }*/
 
-    public UserRequest(String username, String email, String password) {
-        this(username, email, password, new HashSet<>());
-    }
+    /*public UserRequest(String username, String email, String password) {
+        this(username, email, password);
+    }*/
 }

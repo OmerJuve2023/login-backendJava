@@ -32,25 +32,24 @@ public class UserService {
 
     public UserResponse createUser(UserRequest userRequest) {
 
-        Set<Role> authorities = new HashSet<>();
-
-        for (String roleString : userRequest.getAuthority()) {
-            Optional<Role> findRole = roleRepository.findByAuthority(roleString);
+       /* Set<Role> authorities = new HashSet<>();
+        for (Role roleString : userRequest.getAuthority()) {
+            Optional<Role> findRole = roleRepository.findByAuthority(roleString.getAuthority());
             findRole.ifPresent(authorities::add);
-        }
+        }*/
 
         User newUser = User.builder()
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .password(encoder.encode(userRequest.getPassword()))
-                .authorities(authorities)
+                /*.authorities(authorities)*/
                 .build();
 
         return UserResponse.toUserResponseFromUser(userRepository.save(newUser));
     }
 
     public UserResponse deleteUser(Long id) {
-        UserResponse userResponse =  this.getUserById(id);
+        UserResponse userResponse = this.getUserById(id);
         userRepository.deleteById(id);
         return userResponse;
     }
